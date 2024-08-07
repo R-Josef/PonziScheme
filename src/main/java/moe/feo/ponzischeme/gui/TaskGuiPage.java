@@ -19,7 +19,8 @@ public class TaskGuiPage {
 
     private Inventory inv;
     public static final Lock lock = new ReentrantLock();
-    String type;
+    String type,BilitaskBV,BBStaskid;
+    String BiliLike,BiliCoin,BiliFavorite,BBSreply,BiliALL,BBSALL;
     TaskGuiPage(String type) {
         //输入bili为bilibili三连任务
         //输入bbs为论坛任务
@@ -57,29 +58,32 @@ public class TaskGuiPage {
                     if (i == 1 + 9 * 4) { // (1, 5) 处放置火把花
                         ItemStack torchflower = new ItemStack(Material.TORCHFLOWER, 1);
                         ItemMeta torchflowerMeta = torchflower.getItemMeta();
-                        torchflowerMeta.setDisplayName("这里是任务名");
-                        torchflowerMeta.setLore(Arrays.asList("这里是任务描述"));
+                        torchflowerMeta.setDisplayName("BiliBili 任务");
+                        torchflowerMeta.setLore(Arrays.asList("BV:"+BilitaskBV,
+                        "当前状态："+BiliALL
+                        ));
                         torchflower.setItemMeta(torchflowerMeta);
                         inv.setItem(i, torchflower);
                     } else if (i == 37) { // (4, 4) 处放置下界合金升级锻造模板
                         ItemStack netheriteUpgradeSmithingTemplate = new ItemStack(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE, 1);
                         ItemMeta netheriteUpgradeSmithingTemplateMeta = netheriteUpgradeSmithingTemplate.getItemMeta();
-                        netheriteUpgradeSmithingTemplateMeta.setDisplayName("这里是点赞状态");
-                        netheriteUpgradeSmithingTemplateMeta.setLore(Arrays.asList("这里是点赞状态描述"));
+                        netheriteUpgradeSmithingTemplateMeta.setDisplayName("点赞");
+                        netheriteUpgradeSmithingTemplateMeta.setLore(Arrays.asList("点赞状态："+BiliLike
+                        ));
                         netheriteUpgradeSmithingTemplate.setItemMeta(netheriteUpgradeSmithingTemplateMeta);
                         inv.setItem(i, netheriteUpgradeSmithingTemplate);
                     } else if (i == 46) { // (4, 5) 处放置海洋之心
                         ItemStack heartOfTheSea = new ItemStack(Material.HEART_OF_THE_SEA, 1);
                         ItemMeta heartOfTheSeaMeta = heartOfTheSea.getItemMeta();
-                        heartOfTheSeaMeta.setDisplayName("这里是投币状态");
-                        heartOfTheSeaMeta.setLore(Arrays.asList("这里是投币状态描述"));
+                        heartOfTheSeaMeta.setDisplayName("投币");
+                        heartOfTheSeaMeta.setLore(Arrays.asList("投币状态："+BiliCoin));
                         heartOfTheSea.setItemMeta(heartOfTheSeaMeta);
                         inv.setItem(i, heartOfTheSea);
                     } else if (i == 55) { // (4, 6) 处放置箱子
                         ItemStack chest = new ItemStack(Material.CHEST, 1);
                         ItemMeta chestMeta = chest.getItemMeta();
-                        chestMeta.setDisplayName("这里是收藏状态");
-                        chestMeta.setLore(Arrays.asList("这里是收藏状态描述"));
+                        chestMeta.setDisplayName("收藏");
+                        chestMeta.setLore(Arrays.asList("收藏状态："+BiliFavorite));
                         chest.setItemMeta(chestMeta);
                         inv.setItem(i, chest);
                     } else { // 其他位置放置黑色染色玻璃板
@@ -108,15 +112,18 @@ public class TaskGuiPage {
                     if (i == 1 + 9 * 4) { // (1, 5) 处放置火把花
                         ItemStack torchflower = new ItemStack(Material.TORCHFLOWER, 1);
                         ItemMeta torchflowerMeta = torchflower.getItemMeta();
-                        torchflowerMeta.setDisplayName("这里是任务名");
-                        torchflowerMeta.setLore(Arrays.asList("这里是任务描述"));
+                        torchflowerMeta.setDisplayName("BBS 任务");
+                        torchflowerMeta.setLore(Arrays.asList("帖子ID："+BBStaskid,
+                                "当前状态："+BBSALL,
+                                "如果完成了该任务,点击此处领取奖励"));
                         torchflower.setItemMeta(torchflowerMeta);
                         inv.setItem(i, torchflower);
                     }  else if (i == 46) { // (4, 5) 处放置海洋之心
                         ItemStack heartOfTheSea = new ItemStack(Material.PAPER, 1);
                         ItemMeta heartOfTheSeaMeta = heartOfTheSea.getItemMeta();
-                        heartOfTheSeaMeta.setDisplayName("这里是帖子状态");
-                        heartOfTheSeaMeta.setLore(Arrays.asList("这里是帖子回复状态描述"));
+                        heartOfTheSeaMeta.setDisplayName("帖子");
+                        heartOfTheSeaMeta.setLore(Arrays.asList("帖子回复状态："+BBSreply,
+                                "关闭gui后刷新"));
                         heartOfTheSea.setItemMeta(heartOfTheSeaMeta);
                         inv.setItem(i, heartOfTheSea);
                     }  else { // 其他位置放置黑色染色玻璃板

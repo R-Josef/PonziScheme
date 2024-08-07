@@ -1,5 +1,8 @@
 package moe.feo.ponzischeme.gui;
 
+import moe.feo.ponzischeme.Crawler;
+import moe.feo.ponzischeme.sql.BaseDao;
+import moe.feo.ponzischeme.sql.MysqlDao;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,17 +23,30 @@ public class GUIListener implements Listener {
             event.setCancelled(true);
             // TODO 主GUI点击相关逻辑
             //毒土豆 即bbs任务
+
             if (event.getCurrentItem().getType()== Material.POISONOUS_POTATO){
+                String FlarmumName=new MysqlDao().getPlayerProfile(player.getUniqueId().toString()).getFlarumName();
+                if (FlarmumName==null)
+                {   player.sendMessage("你未绑定BBS账号，请使用【命令,需填充】来绑定账号");
+                    return;}
+//                //todo 填充网址
+//                Crawler.getFlarumActivateByUsername("",FlarmumName);
+//
+
                 //简单判断类型为毒土豆，不应该把这个判断当做唯一标准
                 //如果有多个任务 应该自己写出所有判断
-                //此外 描述以及物品名称未定义
+                //此外 主gui的描述以及物品名称未定义
                 TaskGuiPage taskGuiPage = new TaskGuiPage("bbs");
                 taskGuiPage.openGui(player);
-                //阻止物品拿出
-                event.setCancelled(true);
+
             }
             //书与笔 b站任务
             if (event.getCurrentItem().getType()== Material.WRITABLE_BOOK){
+                if (new MysqlDao().getPlayerProfile(player.getUniqueId().toString()).getBilibiliId()==0)
+                {
+                    player.sendMessage("你未绑定B站账号，请使用【命令,需填充】来绑定账号");
+                    return;
+                }
                 TaskGuiPage taskGuiPage = new TaskGuiPage("bili");
                 taskGuiPage.openGui(player);
 
