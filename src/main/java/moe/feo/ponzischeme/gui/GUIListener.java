@@ -17,6 +17,7 @@ public class GUIListener implements Listener {
         if (holder instanceof MainPage.PonziSchemeGUIHolder) {
             event.setCancelled(true);
             // TODO GUI点击相关逻辑
+
         }
     }
 }
