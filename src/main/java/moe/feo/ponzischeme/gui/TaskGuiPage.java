@@ -19,6 +19,13 @@ public class TaskGuiPage {
 
     private Inventory inv;
     public static final Lock lock = new ReentrantLock();
+    String type;
+    TaskGuiPage(String type) {
+        //输入bili为bilibili三连任务
+        //输入bbs为论坛任务
+        this.type = type;
+    }
+
 
     class PonziSchemeGUIHolder implements InventoryHolder {// 定义一个Holder用于识别此插件的GUI
         @Override
@@ -36,54 +43,95 @@ public class TaskGuiPage {
     }
 
     public void createGui(Player player) {
-        lock.lock();
-        try {
-            InventoryHolder holder = new PonziSchemeGUIHolder();
-            this.setGui(Bukkit.createInventory(holder, 54, "Title")); // 54个格子
-            for (int i = 0; i < inv.getSize(); i++) {
-                // 设置边框
-                if ((i >= 9 && i <= 44) && (i % 9 != 0 && i % 9 != 8)) { // 掏空中间区域
-                    continue;
+        if (type.equals("bili")) {
+
+            lock.lock();
+            try {
+                InventoryHolder holder = new PonziSchemeGUIHolder();
+                this.setGui(Bukkit.createInventory(holder, 54, "Title")); // 54个格子
+                for (int i = 0; i < inv.getSize(); i++) {
+                    // 设置边框
+                    if ((i >= 9 && i <= 44) && (i % 9 != 0 && i % 9 != 8)) { // 掏空中间区域
+                        continue;
+                    }
+                    if (i == 1 + 9 * 4) { // (1, 5) 处放置火把花
+                        ItemStack torchflower = new ItemStack(Material.TORCHFLOWER, 1);
+                        ItemMeta torchflowerMeta = torchflower.getItemMeta();
+                        torchflowerMeta.setDisplayName("这里是任务名");
+                        torchflowerMeta.setLore(Arrays.asList("这里是任务描述"));
+                        torchflower.setItemMeta(torchflowerMeta);
+                        inv.setItem(i, torchflower);
+                    } else if (i == 37) { // (4, 4) 处放置下界合金升级锻造模板
+                        ItemStack netheriteUpgradeSmithingTemplate = new ItemStack(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE, 1);
+                        ItemMeta netheriteUpgradeSmithingTemplateMeta = netheriteUpgradeSmithingTemplate.getItemMeta();
+                        netheriteUpgradeSmithingTemplateMeta.setDisplayName("这里是点赞状态");
+                        netheriteUpgradeSmithingTemplateMeta.setLore(Arrays.asList("这里是点赞状态描述"));
+                        netheriteUpgradeSmithingTemplate.setItemMeta(netheriteUpgradeSmithingTemplateMeta);
+                        inv.setItem(i, netheriteUpgradeSmithingTemplate);
+                    } else if (i == 46) { // (4, 5) 处放置海洋之心
+                        ItemStack heartOfTheSea = new ItemStack(Material.HEART_OF_THE_SEA, 1);
+                        ItemMeta heartOfTheSeaMeta = heartOfTheSea.getItemMeta();
+                        heartOfTheSeaMeta.setDisplayName("这里是投币状态");
+                        heartOfTheSeaMeta.setLore(Arrays.asList("这里是投币状态描述"));
+                        heartOfTheSea.setItemMeta(heartOfTheSeaMeta);
+                        inv.setItem(i, heartOfTheSea);
+                    } else if (i == 55) { // (4, 6) 处放置箱子
+                        ItemStack chest = new ItemStack(Material.CHEST, 1);
+                        ItemMeta chestMeta = chest.getItemMeta();
+                        chestMeta.setDisplayName("这里是收藏状态");
+                        chestMeta.setLore(Arrays.asList("这里是收藏状态描述"));
+                        chest.setItemMeta(chestMeta);
+                        inv.setItem(i, chest);
+                    } else { // 其他位置放置黑色染色玻璃板
+                        ItemStack blackGlassPane = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
+                        ItemMeta blackGlassPaneMeta = blackGlassPane.getItemMeta();
+                        blackGlassPaneMeta.setDisplayName("");
+                        blackGlassPane.setItemMeta(blackGlassPaneMeta);
+                        inv.setItem(i, blackGlassPane);
+                    }
                 }
-                if (i == 1 + 9 * 4) { // (1, 5) 处放置火把花
-                    ItemStack torchflower = new ItemStack(Material.TORCHFLOWER, 1);
-                    ItemMeta torchflowerMeta = torchflower.getItemMeta();
-                    torchflowerMeta.setDisplayName("这里是任务名");
-                    torchflowerMeta.setLore(Arrays.asList("这里是任务描述"));
-                    torchflower.setItemMeta(torchflowerMeta);
-                    inv.setItem(i, torchflower);
-                } else if (i == 37) { // (4, 4) 处放置下界合金升级锻造模板
-                    ItemStack netheriteUpgradeSmithingTemplate = new ItemStack(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE, 1);
-                    ItemMeta netheriteUpgradeSmithingTemplateMeta = netheriteUpgradeSmithingTemplate.getItemMeta();
-                    netheriteUpgradeSmithingTemplateMeta.setDisplayName("这里是点赞状态");
-                    netheriteUpgradeSmithingTemplateMeta.setLore(Arrays.asList("这里是点赞状态描述"));
-                    netheriteUpgradeSmithingTemplate.setItemMeta(netheriteUpgradeSmithingTemplateMeta);
-                    inv.setItem(i, netheriteUpgradeSmithingTemplate);
-                } else if (i == 46) { // (4, 5) 处放置海洋之心
-                    ItemStack heartOfTheSea = new ItemStack(Material.HEART_OF_THE_SEA, 1);
-                    ItemMeta heartOfTheSeaMeta = heartOfTheSea.getItemMeta();
-                    heartOfTheSeaMeta.setDisplayName("这里是投币状态");
-                    heartOfTheSeaMeta.setLore(Arrays.asList("这里是投币状态描述"));
-                    heartOfTheSea.setItemMeta(heartOfTheSeaMeta);
-                    inv.setItem(i, heartOfTheSea);
-                } else if (i == 55) { // (4, 6) 处放置箱子
-                    ItemStack chest = new ItemStack(Material.CHEST, 1);
-                    ItemMeta chestMeta = chest.getItemMeta();
-                    chestMeta.setDisplayName("这里是收藏状态");
-                    chestMeta.setLore(Arrays.asList("这里是收藏状态描述"));
-                    chest.setItemMeta(chestMeta);
-                    inv.setItem(i, chest);
-                } else { // 其他位置放置黑色染色玻璃板
-                    ItemStack blackGlassPane = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
-                    ItemMeta blackGlassPaneMeta = blackGlassPane.getItemMeta();
-                    blackGlassPaneMeta.setDisplayName("");
-                    blackGlassPane.setItemMeta(blackGlassPaneMeta);
-                    inv.setItem(i, blackGlassPane);
-                }
+            } finally {
+                lock.unlock();
             }
-        } finally {
-            lock.unlock();
-        }
+        }//bilibili任务
+         else if (type.equals("bbs")) {
+
+            lock.lock();
+            try {
+                InventoryHolder holder = new PonziSchemeGUIHolder();
+                this.setGui(Bukkit.createInventory(holder, 54, "Title")); // 54个格子
+                for (int i = 0; i < inv.getSize(); i++) {
+                    // 设置边框
+                    if ((i >= 9 && i <= 44) && (i % 9 != 0 && i % 9 != 8)) { // 掏空中间区域
+                        continue;
+                    }
+                    if (i == 1 + 9 * 4) { // (1, 5) 处放置火把花
+                        ItemStack torchflower = new ItemStack(Material.TORCHFLOWER, 1);
+                        ItemMeta torchflowerMeta = torchflower.getItemMeta();
+                        torchflowerMeta.setDisplayName("这里是任务名");
+                        torchflowerMeta.setLore(Arrays.asList("这里是任务描述"));
+                        torchflower.setItemMeta(torchflowerMeta);
+                        inv.setItem(i, torchflower);
+                    }  else if (i == 46) { // (4, 5) 处放置海洋之心
+                        ItemStack heartOfTheSea = new ItemStack(Material.PAPER, 1);
+                        ItemMeta heartOfTheSeaMeta = heartOfTheSea.getItemMeta();
+                        heartOfTheSeaMeta.setDisplayName("这里是帖子状态");
+                        heartOfTheSeaMeta.setLore(Arrays.asList("这里是帖子回复状态描述"));
+                        heartOfTheSea.setItemMeta(heartOfTheSeaMeta);
+                        inv.setItem(i, heartOfTheSea);
+                    }  else { // 其他位置放置黑色染色玻璃板
+                        ItemStack blackGlassPane = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
+                        ItemMeta blackGlassPaneMeta = blackGlassPane.getItemMeta();
+                        blackGlassPaneMeta.setDisplayName("");
+                        blackGlassPane.setItemMeta(blackGlassPaneMeta);
+                        inv.setItem(i, blackGlassPane);
+                    }
+                }
+            } finally {
+                lock.unlock();
+            }
+        } //bbs任务
+
     }
 
 
