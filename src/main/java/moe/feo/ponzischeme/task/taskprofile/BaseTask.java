@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class BaseTask implements TaskImpl {
@@ -68,7 +69,7 @@ public class BaseTask implements TaskImpl {
     @Override
     public void giveReward(Player player) {
         List<ItemStack> items = getRewards().getItems();
-        HashMap<Integer,ItemStack> notAdded =player.getInventory().addItem(items.toArray(new ItemStack[0]));
+        HashMap<Integer,ItemStack> notAdded = player.getInventory().addItem(items.toArray(new ItemStack[0]));
         if (!notAdded.isEmpty()){
             for (Integer i:notAdded.keySet()){
                 player.getWorld().dropItem(player.getLocation(),notAdded.get(i));    
