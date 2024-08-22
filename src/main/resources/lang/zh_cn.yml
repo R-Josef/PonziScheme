@@ -45,8 +45,8 @@ notsame: '&4抱歉, 两次输入不一致，请重新输入!'
 samebind: '&4已有相同的绑定,如果这是您的ID,请联系管理!'
 ownsamebind: '&4您已经绑定过相同ID!'
 accountnotfound: '&4没有找到该账号, 请检查输入是否正确!'
-bindbilibili: '&9绑定B站账号, 应该是uid, 输入 %KEYWORD% 中任意一个关键词取消绑定'
-bindflarum: '&9绑定Flarum账号, 输入 %KEYWORD% 关键词取消绑定'
+bindbilibili: '&9请在聊天框中输入UID以绑定B站账号, 输入 %KEYWORD% 等关键词取消绑定'
+bindflarum: '&9请在聊天框中输入用户名或ID以绑定Flarum账号, 输入 %KEYWORD% 等关键词取消绑定'
 
 #其他
 nopermission: '&4对不起，您没有权限这么做!'
