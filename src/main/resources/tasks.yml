@@ -8,7 +8,7 @@ example-flarum:
   # 任务图标
   icon:
     ==: org.bukkit.inventory.ItemStack
-    v: 3839
+    v: 3337
     type: NETHER_STAR
   # 任务达成条件
   condition:
@@ -26,7 +26,7 @@ example-flarum:
       # 键'1'不必是数字, 值必须为物品的序列化文本
       '1':
         ==: org.bukkit.inventory.ItemStack
-        v: 3839
+        v: 3337
         type: ENCHANTED_GOLDEN_APPLE
 
 # B站视频三连任务示例
@@ -39,7 +39,7 @@ example-bilibili:
   # 任务图标
   icon:
     ==: org.bukkit.inventory.ItemStack
-    v: 3839
+    v: 3337
     type: WRITABLE_BOOK
   # B站视频BV号
   bvid: 'BV1puvUeREap'
@@ -60,11 +60,11 @@ example-bilibili:
       # 键'1'不必是数字, 值必须为物品的序列化文本
       '1':
         ==: org.bukkit.inventory.ItemStack
-        v: 3839
+        v: 3337
         type: ENCHANTED_GOLDEN_APPLE
       '2':
         ==: org.bukkit.inventory.ItemStack
-        v: 3839
+        v: 3337
         type: DIAMOND_SWORD
         meta:
           ==: ItemMeta

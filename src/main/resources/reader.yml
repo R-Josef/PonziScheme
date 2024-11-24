@@ -1,6 +1,6 @@
 '0':
   ==: org.bukkit.inventory.ItemStack
-  v: 3839
+  v: 3337
   type: DIAMOND_SWORD
   meta:
     ==: ItemMeta
@@ -16,10 +16,10 @@
     repair-cost: 7
 '1':
   ==: org.bukkit.inventory.ItemStack
-  v: 3839
+  v: 3337
   type: ENCHANTED_GOLDEN_APPLE
 '2':
   ==: org.bukkit.inventory.ItemStack
-  v: 3839
+  v: 3337
   type: DIAMOND
   amount: 64
