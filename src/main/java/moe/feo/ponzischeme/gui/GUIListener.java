@@ -150,7 +150,7 @@ public class GUIListener implements Listener {
                     if (ongoing != null) { // 有正在进行的相同任务
                         List<FlarumPost> posts = Crawler.getFlarumActivateByUsername(Config.FLARUMURL.getString(), playerFlarumName);
                         if (posts.size() > 0) {
-                            OffsetDateTime offsetDateTime = OffsetDateTime.parse(posts.getFirst().getAttributes().getCreatedAt(), DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+                            OffsetDateTime offsetDateTime = OffsetDateTime.parse(posts.get(0).getAttributes().getCreatedAt(), DateTimeFormatter.ISO_OFFSET_DATE_TIME);
                             long lastPostTime = offsetDateTime.toInstant().toEpochMilli();
                             long startTime = 0; // 任务期限开始的时间
                             long endTime = 0;
